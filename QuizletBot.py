@@ -22,13 +22,14 @@ cardDict = {
     't10' : 'd10',
 }
 
-cards = 't1\td1\nt2\td2\nt3\td3\nt4\td4\nt5\td5\nt6\td6\nt7\td7\nt8\td8\nt9\td9\nt10\td10\n'
+cards = 't1,d1\nt2,d2\nt3,d3\nt4,d4\nt5,d5\nt6,d6\nt7,d7\nt8,d8\nt9,d9\nt10,d10\n'
 
 #/Users/joshuashen/Downloads/chromedriver
 class QuizletBot():
-    def __init__(self, cards):
+    def __init__(self, cards, title):
         self.driver = webdriver.Chrome(executable_path = '/Users/joshuashen/Downloads/chromedriver')
         self.cards = cards
+        self.title = title
         
     def login(self):
         self.driver.get('https://quizlet.com/create-set')
@@ -47,5 +48,29 @@ class QuizletBot():
         return
     
     def createFlashcards(self):
-        self.driver.get('https://quizlet.com/create-set')
+        sleep(2)
+        x_btn = self.driver.find_element_by_xpath('/html/body/div[13]/div/div[1]/div/button')
+        x_btn.click()
+        
+        import_btn = self.driver.find_element_by_xpath('//*[@id="SetPageTarget"]/div/div[1]/div[3]/div/a')
+        import_btn.click()
+        
+        comma_btn = self.driver.find_element_by_xpath('//*[@id="SetPageTarget"]/div/div[3]/div[1]/div/form/div[2]/div[1]/div/label[2]/span[1]')
+        comma_btn.click()
+        
+        data_in = self.driver.find_element_by_xpath('//*[@id="SetPageTarget"]/div/div[3]/div[1]/div/form/textarea')
+        data_in.send_keys(cards)
+        
+        import_btn2 = self.driver.find_element_by_xpath('//*[@id="SetPageTarget"]/div/div[3]/div[1]/div/form/div[1]/button')
+        import_btn2.click()
+        
+        title_in = self.driver.find_element_by_xpath('//*[@id="SetPageTarget"]/div/div[1]/div[2]/div/div[1]/div/label/input')
+        title_in.send_keys(self.title)
+        
+        create_btn = self.driver.find_element_by_xpath('//*[@id="SetPageTarget"]/div/div[2]/div/div/div[2]/div/button/span/span')
+        create_btn.click()
+        
+        
+        
+        
         return
