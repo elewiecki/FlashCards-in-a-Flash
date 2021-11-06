@@ -1,2 +1,2 @@
 # FlashCards-in-a-Flash
-repo for hackumass 1001 project
+Repo for Hack UMass 1001 project
