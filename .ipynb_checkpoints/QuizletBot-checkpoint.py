@@ -22,12 +22,12 @@ cardDict = {
     't10' : 'd10',
 }
 
-cards = 't1,d1\nt2,d2\nt3,d3\nt4,d4\nt5,d5\nt6,d6\nt7,d7\nt8,d8\nt9,d9\nt10,d10\n'
+cards = 'apple,apple\napple,apple\napple,apple\napple,apple\napple,apple\napple,apple\napple,apple\napple,apple\napple,apple\napple,apple\n'
 
 #/Users/joshuashen/Downloads/chromedriver
 class QuizletBot():
     def __init__(self, cards, title):
-        self.driver = webdriver.Chrome(executable_path = '/Users/joshuashen/Downloads/chromedriver')
+        self.driver = webdriver.Chrome(executable_path = './chromedriver')
         self.cards = cards
         self.title = title
         
@@ -55,8 +55,12 @@ class QuizletBot():
         import_btn = self.driver.find_element_by_xpath('//*[@id="SetPageTarget"]/div/div[1]/div[3]/div/a')
         import_btn.click()
         
+        sleep(1)
+        
         comma_btn = self.driver.find_element_by_xpath('//*[@id="SetPageTarget"]/div/div[3]/div[1]/div/form/div[2]/div[1]/div/label[2]/span[1]')
         comma_btn.click()
+        
+        sleep(1)
         
         data_in = self.driver.find_element_by_xpath('//*[@id="SetPageTarget"]/div/div[3]/div[1]/div/form/textarea')
         data_in.send_keys(cards)
@@ -64,13 +68,27 @@ class QuizletBot():
         import_btn2 = self.driver.find_element_by_xpath('//*[@id="SetPageTarget"]/div/div[3]/div[1]/div/form/div[1]/button')
         import_btn2.click()
         
+        sleep(1)
         title_in = self.driver.find_element_by_xpath('//*[@id="SetPageTarget"]/div/div[1]/div[2]/div/div[1]/div/label/input')
         title_in.send_keys(self.title)
         
         create_btn = self.driver.find_element_by_xpath('//*[@id="SetPageTarget"]/div/div[2]/div/div/div[2]/div/button/span/span')
         create_btn.click()
         
-        
-        
-        
+        sleep(1)
+        tLangDropDown = self.driver.find_element_by_xpath('//*[@id="SetPageTarget"]/div/div[2]/div[2]/div/div[1]/div[6]/div[1]/div[1]/div/div[3]/div[1]/div[2]/div/div/div[1]/div/div/span[2]/div[2]/button')
+        tLangDropDown.click()
+        sleep(1)
+
+        tLang = self.driver.find_element_by_xpath('//*[@id="react-select-2--option-1"]')
+        tLang.click()
+        sleep(1)
+        dLangDropDown = self.driver.find_element_by_xpath('//*[@id="SetPageTarget"]/div/div[2]/div[2]/div/div[1]/div[6]/div[1]/div[1]/div/div[3]/div[1]/div[2]/div/div/div[2]/div/div/div[2]/span[2]/div[2]/button')
+        dLangDropDown.click()
+        sleep(1)
+        dLang = self.driver.find_element_by_xpath('//*[@id="react-select-3--option-1"]')
+        dLang.click()
+        sleep(1)
+        create_btn = self.driver.find_element_by_xpath('//*[@id="SetPageTarget"]/div/div[2]/div/div/div[2]/div/button/span/span')
+        create_btn.click()
         return
