@@ -5,6 +5,8 @@ use selenium
 '''
 
 from selenium import webdriver
+from time import sleep
+import secrets
 
 #dummy data
 cardDict = {
@@ -20,13 +22,30 @@ cardDict = {
     't10' : 'd10',
 }
 
-cards = 't1\d1\nt2\d2\nt3\d3\nt4\d4\nt5\d5\nt6\d6\nt7\d7\nt8\d8\nt9\d9\nt10\d10\n'
+cards = 't1\td1\nt2\td2\nt3\td3\nt4\td4\nt5\td5\nt6\td6\nt7\td7\nt8\td8\nt9\td9\nt10\td10\n'
 
+#/Users/joshuashen/Downloads/chromedriver
 class QuizletBot():
     def __init__(self, cards):
-        self.driver = webdriver.Chrome(executable_path = './chromedriver')
+        self.driver = webdriver.Chrome(executable_path = '/Users/joshuashen/Downloads/chromedriver')
         self.cards = cards
         
-    #def login(self):
-    #def createFlashcards(self):
-        #self.driver.get('https://quizlet.com/create-set')
+    def login(self):
+        self.driver.get('https://quizlet.com/create-set')
+        
+        qlogin_btn = self.driver.find_element_by_xpath('/html/body/div[6]/div/div[2]/form/div[6]/div/span/span/button')
+        qlogin_btn.click()
+        
+        username_in = self.driver.find_element_by_xpath('//*[@id="username"]')
+        username_in.send_keys(secrets.username)
+        password_in = self.driver.find_element_by_xpath('//*[@id="password"]')
+        password_in.send_keys(secrets.password)
+        
+        login_btn = self.driver.find_element_by_xpath('/html/body/div[9]/div/div[2]/form/button')
+        login_btn.click()
+        
+        return
+    
+    def createFlashcards(self):
+        self.driver.get('https://quizlet.com/create-set')
+        return
