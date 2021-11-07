@@ -8,26 +8,11 @@ from selenium import webdriver
 from time import sleep
 import secrets
 
-#dummy data
-cardDict = {
-    't1' : 'd1',
-    't2' : 'd2',
-    't3' : 'd3',
-    't4' : 'd4',
-    't5' : 'd5',
-    't6' : 'd6',
-    't7' : 'd7',
-    't8' : 'd8',
-    't9' : 'd9',
-    't10' : 'd10',
-}
-
-cards = 'apple@@@apple\napple@@@apple\napple@@@apple\napple@@@apple\napple@@@apple\napple@@@apple\napple@@@apple\napple@@@apple\napple@@@apple\napple@@@apple\n'
 
 #/Users/joshuashen/Downloads/chromedriver
 class QuizletBot():
-    def __init__(self, cards, title):
-        self.driver = webdriver.Chrome(executable_path = './chromedriver')
+    def __init__(self, cards, title = 'TITLE'):
+        self.driver = webdriver.Chrome(executable_path = '/Users/joshuashen/Downloads/chromedriver')
         self.cards = cards
         self.title = title
         
@@ -65,7 +50,7 @@ class QuizletBot():
         separate_in.send_keys("@@@")
         
         data_in = self.driver.find_element_by_xpath('//*[@id="SetPageTarget"]/div/div[3]/div[1]/div/form/textarea')
-        data_in.send_keys(cards)
+        data_in.send_keys(self.cards)
         
         import_btn2 = self.driver.find_element_by_xpath('//*[@id="SetPageTarget"]/div/div[3]/div[1]/div/form/div[1]/button')
         import_btn2.click()
