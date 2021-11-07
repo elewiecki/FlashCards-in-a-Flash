@@ -38,7 +38,7 @@ def convert_image_to_string(image_name):
 #returns None
 #Saves the string to saved_defenitions.txt and appends "\n ---------- \n" at the end of the file to distinguish between entires 
 def save_to_file(string):
-    string += "\n ---------- \n"
+    string += "\n" +  "----------" +  "\n" 
     text_file = open("saved_defenitions.txt", "a") #written with access mode to allow appending
     text_file.write(string)
     text_file.close()
