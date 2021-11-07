@@ -17,32 +17,52 @@
 
 import re
 
+def execute():
+    writeOutput(createCardDictionary())
+
 
 
 def createCardDictionary():
-    
-    fullDictionary = []
    
+    fullDictionary = []
 
+    #input is in format thing then 10 dashes
     input_text = open(r'input.txt', 'r').read()
     print(input_text)
+    input_sentences = re.split("(?<=[^A-Z])\.[^a-zA-Z]" , input_text) #problem: acronyms. Solution: nltk library, would have to load into repo or something
+    for j in range(len(input_sentences)):
+        input_sentences[j] = "\. " + input_sentences[j]
     
-  
-    #first pass
-    def findPatterns(startBound, indicator, endBound):
-        # does not return anything, modifies toRet
+    #creates flashcard and adds to dictionary
+    def  appendCardToDictionary(foundDefinitions, foundWords):
+        for i in range(min(len(foundDefinitions), len(foundWords))):
+            if len(foundDefinitions[i]) == 0:
+                continue
 
-        #doesnt work for things like Washington D.C.
-        input_sentences = input_text.split(".")
 
-        #blank is a blank format
+            flashcard = {
+                 'word': '',
+                  'definition': ''
+            }
+
+             #makes dictionary/flashcard
+            flashcard['word'] = foundWords[i]
+            flashcard['definition'] = foundDefinitions[i]
+            #appends pair to dictionary
+            fullDictionary.append(flashcard)
+
+            print(flashcard)  
+            
+            
+    #Works in format "[start indicator] [word] [indicator phrase] [definition] [end indicator]"
+    def findBoundedIndicator(startBound, indicator, endBound):
+        # does not return anything, modifies fullDictionary
         
         #iterates through every sentence  
         for j in range(len(input_sentences)):
             #sets regex, calls it to find word
             word = re.compile('(?<=' + startBound + ').*(?=' + indicator + ')')
-            
-            input_sentences[j] = ". " + input_sentences[j] 
+        
 
             #finds definition
             definition = re.compile('(?<=' + indicator + ').*(?=' + endBound + ')')
@@ -53,20 +73,25 @@ def createCardDictionary():
 
             #loops through all word/definition pairs, appends to dictionary
             #must be same length
-            for i in range(len(foundWords)):
+            appendCardToDictionary(foundDefinitions, foundWords)
 
-                flashcard = {
-                    'word': '',
-                    'definition': ''
-                }
+    #works with format [indicator] [definition] [endBound]
+    def findIndicatorToEndBound(indicator, endBound):
+        # does not return anything, modifies toRet
+        
+        #iterates through every sentence  
+        for j in range(len(input_sentences)):
 
-                #makes dictionary/flashcard
-                flashcard['word'] = foundWords[i]
-                flashcard['definition'] = foundDefinitions[i]
-                #appends pair to dictionary
-                fullDictionary.append(flashcard)
+            #finds definition
+            definition = re.compile('(?<=' + indicator + ').*(?=' + endBound + ')')
 
-                print(flashcard)
+            #finds all instances of format
+            foundWords = re.findall(indicator, input_sentences[j])
+            foundDefinitions = definition.findall(input_sentences[j], re.IGNORECASE)
+
+            #loops through all word/definition pairs, appends to dictionary
+            #must be same length
+            appendCardToDictionary(foundDefinitions, foundWords)
 
        
     def findKeywords():
@@ -74,19 +99,29 @@ def createCardDictionary():
         pass
     
 
-    findPatterns(". ", " is a ", ".*") #looks for "is a"
-    findPatterns(". ", " has been ", ".*") #Looks for "has been"
-    findPatterns(". ", " was a ", ".*") #Looks for "was a"
+    findBoundedIndicator(". ", " is a ", ".*") #looks for "is a"
+    findBoundedIndicator(". ", " has been ", ".*") #Looks for "has been"
+    findBoundedIndicator(". ", " was a ", ".*") #Looks for "was a"
+    findBoundedIndicator(". ", ": ", ".*") #looks for :
     
-    ##FIZXXXXXX
-    findPatterns("in December \d ", ", ", ".*") #Looks for "in December"
+    
+    
+    findIndicatorToEndBound("(?<=\D)\d\d\d\d(?=\D)", ".*") #Looks for year
+
+
+     
     
     return fullDictionary
 
 
 
 def writeOutput(cardDict):
-    pass
+    
+    output_text = open("output.txt","w")
+    for i in range(len(cardDict)):
+        output_text.write(cardDict[i]["word"] + "@@@" + cardDict[i]["definition"] + "\n")
+
+    output_text.close()
     #does not return anything, overwrites output.txt
     
     
