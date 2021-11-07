@@ -18,7 +18,10 @@ def rungui():
         text = textWidget.get("1.0", "end")
         file1 = open("input.txt", "w+", encoding ='utf8')
         file1.write(text)
-        
+    def addTextImage():
+        text = textWidget.get("1.0", "end")
+        file1= open("guiimage.txt", "w+", encoding = 'utf8')
+        file1.write(text)
 
     textWidget = Text(root, height = 10, width = 100)
     textWidget.pack()
@@ -26,10 +29,10 @@ def rungui():
     importText.place(relx = 0.0, rely=15)
     importText.pack()
 
-    importImg = tk.Button(root, text="Import Image", padx = 10, pady = 15, fg ="white", bg="#263D42")
+    importImg = tk.Button(root, text="Import Image", padx = 10, pady = 15, fg ="white", bg="#263D42", command=addTextImage)
     importImg.place(relx = 0.0, rely=15)
     importImg.pack()
 
     root.mainloop()
 
-#rungui()
+rungui()
