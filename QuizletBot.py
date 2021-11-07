@@ -22,7 +22,7 @@ cardDict = {
     't10' : 'd10',
 }
 
-cards = 'apple,apple\napple,apple\napple,apple\napple,apple\napple,apple\napple,apple\napple,apple\napple,apple\napple,apple\napple,apple\n'
+cards = 'apple@@@apple\napple@@@apple\napple@@@apple\napple@@@apple\napple@@@apple\napple@@@apple\napple@@@apple\napple@@@apple\napple@@@apple\napple@@@apple\n'
 
 #/Users/joshuashen/Downloads/chromedriver
 class QuizletBot():
@@ -48,19 +48,21 @@ class QuizletBot():
         return
     
     def createFlashcards(self):
-        sleep(2)
+        sleep(3)
         x_btn = self.driver.find_element_by_xpath('/html/body/div[13]/div/div[1]/div/button')
         x_btn.click()
         
+        sleep(1)
         import_btn = self.driver.find_element_by_xpath('//*[@id="SetPageTarget"]/div/div[1]/div[3]/div/a')
         import_btn.click()
         
         sleep(1)
-        
-        comma_btn = self.driver.find_element_by_xpath('//*[@id="SetPageTarget"]/div/div[3]/div[1]/div/form/div[2]/div[1]/div/label[2]/span[1]')
-        comma_btn.click()
+        costom_btn = self.driver.find_element_by_xpath('//*[@id="SetPageTarget"]/div/div[3]/div[1]/div/form/div[2]/div[1]/div/label[3]/span[1]')
+        costom_btn.click()
         
         sleep(1)
+        separate_in = self.driver.find_element_by_xpath('//*[@id="SetPageTarget"]/div/div[3]/div[1]/div/form/div[2]/div[1]/div/label[3]/span[2]/span/label/div/input')
+        separate_in.send_keys("@@@")
         
         data_in = self.driver.find_element_by_xpath('//*[@id="SetPageTarget"]/div/div[3]/div[1]/div/form/textarea')
         data_in.send_keys(cards)
