@@ -110,7 +110,7 @@ def createCardDictionary():
         pass
     
 
-    findBoundedIndicator(". ", "(?<!What)(?<!Why)(?<!How)(?<!When)(?<!Where)(?<!Who)(?<!It)(?<!it)(?<!that)(?<!this)(?<!He)(?<!Her) is a ", ".*") #looks for "is a"
+    findBoundedIndicator(". ", "(?<!What)(?<!Why)(?<!How)(?<!When)(?<!Where)(?<!Who)(?<!It)(?<!That)(?<!This)(?<!He)(?<!Her) is a ", ".*") #looks for "is a"
     findBoundedIndicator(". ", " has been ", ".*") #Looks for "has been"
     findBoundedIndicator(". ", " was a ", ".*") #Looks for "was a"
     findBoundedIndicator(". ", ": ", ".*") #looks for :
