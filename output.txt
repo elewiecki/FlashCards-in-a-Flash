@@ -4,6 +4,8 @@ After making careful observations concerning a particular area of science, scien
 A hypothesis@@@proposition that might be true
 A “theory”@@@proposed explanation for some natural phenomenon, often based on some general principle
 Modern evolutionary theory@@@complex body of ideas whose importance spreads far beyond explaining evolution; its ramifications permeate all areas of biology, and it provides the conceptual framework that unifies biology as a science
+---------- blah@@@good boy
+blah@@@very good boy
 This sort of analysis of specific cases using general principles@@@example of deductive reasoning
 The hypothesis that evolution has occurred@@@accepted scientific fact; it is supported by overwhelming evidence
 A hypothesis that a successful scientist tests is not just any hypothesis; rather, it@@@educated guess or a hunch, in which the scientist integrates all that he or she knows and allows his or her imagination full play, in an attempt to get a sense of what might be true (see Box: How Biologists Do Their Work)

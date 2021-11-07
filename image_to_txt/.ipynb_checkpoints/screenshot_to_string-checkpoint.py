@@ -16,7 +16,6 @@ def main():
         
     elif usr_input == "cp":
         usr_input= input("Please paste your definition: ")
-        string = usr_input
         save_to_file(usr_input)
 
 
@@ -39,7 +38,7 @@ def convert_image_to_string(image_name):
 #Saves the string to saved_defenitions.txt and appends "\n ---------- \n" at the end of the file to distinguish between entires 
 def save_to_file(string):
     string += "\n" +  "----------" +  "\n" 
-    text_file = open("saved_defenitions.txt", "a") #written with access mode to allow appending
+    text_file = open("input.txt", "a") #written with access mode to allow appending
     print(string.encode("utf8"))
     text_file.write(string)
     text_file.close()

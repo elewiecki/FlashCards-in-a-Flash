@@ -277,4 +277,15 @@ The scientific process involves the rejection of
 hypotheses that are inconsistent with experimental
 results or observations. Hypotheses that are consistent
 with available data are conditionally accepted. The
-formulation of 
+formulation of Individuals in the population must produce more offspring than can survive. Human beings
+are somewhat unique among living things in that we can make conscious choices about how
+many offspring we have. Most other organisms, however, produce as many offspring as they can.
+
+----------
+blah is a good boy. blah is a very good boy. 
+----------
+Individuals in the population must produce more offspring than can survive. Human beings
+are somewhat unique among living things in that we can make conscious choices about how
+many offspring we have. Most other organisms, however, produce as many offspring as they can.
+
+----------
