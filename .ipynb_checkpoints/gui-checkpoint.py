@@ -1,37 +1,78 @@
 import tkinter as tk
-from tkinter import filedialog, Text
-import os
-
-
+from tkinter import font
 
 def rungui():
-
     root = tk.Tk()
+    root.title("Flashcards in a Flash")
 
-    canvas1 = tk.Canvas(root, width = 600, height = 300)
-    canvas1.pack()
+    canvas = tk.Canvas(root, width=600, height=300)
+    canvas.grid(columnspan=4, rowspan=10)
+    labelList = []
 
-    frame = tk.Frame(root, bg ="white")
-    frame.place(relwidth=0.8, relheight=0.8, relx= 0.1, rely=0.1, )
+    instructions = tk.Label(root, text="Import texts or image to create flashcards", font="Helvetica")
+    instructions.grid(columnspan=4, column=0, row=0)
 
-    def addText():
-        text = textWidget.get("1.0", "end")
-        file1 = open("input.txt", "w+", encoding ='utf8')
-        file1.write(text)
-    def addTextImage():
-        text = textWidget.get("1.0", "end")
-        file1= open("guiimage.txt", "w+", encoding = 'utf8')
-        file1.write(text)
+    def removeLabel():
+        if len(labelList) != 0:
+            labelList[0].grid_forget()
+            labelList.clear()
 
-    textWidget = Text(root, height = 10, width = 100)
-    textWidget.pack()
-    importText = tk.Button(root, text="Submit Text", padx = 10, pady = 15, fg ="white", bg="#263D42", command=addText)
-    importText.place(relx = 0.0, rely=15)
-    importText.pack()
+    def addTextToBox(): 
+        removeLabel()
+        textInstructions = tk.Label(root, text="Enter texts", font="Helvetica")
+        textInstructions.grid(columnspan=4, column=0, row=3) 
+        labelList.append(textInstructions)
+        text_box = tk.Text(root, height=20, width=75, padx = 15, pady = 15)
+        text_box.grid(columnspan=2, column=1, rowspan=2, row=7)
 
-    importImg = tk.Button(root, text="Import Image", padx = 10, pady = 15, fg ="white", bg="#263D42", command=addTextImage)
-    importImg.place(relx = 0.0, rely=15)
-    importImg.pack()
+        submit_text = tk.StringVar()
+        submitBtn = tk.Button(root,textvariable=submit_text, font="Helvetica", bg = "#20bebe", fg="white", height=1, width=10, command=lambda:writeToFile())
+        submit_text.set("submit")
+        submitBtn.grid(columnspan=2, column=1,row=9)
+        def writeToFile():
+            text = text_box.get("1.0", "end")
+            file1 = open("input.txt", "w+")
+            file1.write(text)
+
+
+
+    def addImageToBox():  
+        removeLabel()
+        imageInstructions = tk.Label(root, text="Enter image's file path", font="Helvetica")
+        imageInstructions.grid(columnspan=4, column=0, row=3)  
+        labelList.append(imageInstructions)
+        text_box = tk.Text(root, height=20, width=75, padx = 15, pady = 15)
+        text_box.grid(columnspan=2, column=1, rowspan=2, row=7)
+
+        submit_text = tk.StringVar()
+        submitBtn = tk.Button(root,textvariable=submit_text, font="Helvetica", bg = "#20bebe", fg="white", height=1, width=10, command=lambda:writeToFile())
+        submit_text.set("submit")
+        submitBtn.grid(columnspan=2, column=1,row=9)
+        def writeToFile():
+            text = text_box.get("1.0", "end")
+            file1 = open("guiimage.txt", "w+")
+            file1.write(text)
+
+
+
+
+    import_text = tk.StringVar()
+    importTextBtn = tk.Button(root,textvariable=import_text, font="Helvetica", bg = "#20bebe", fg="white", height=1, width=10, command=lambda:addTextToBox(),)
+    import_text.set("Import Text")
+    importTextBtn.grid(column=1, row=2)
+
+    import_image = tk.StringVar()
+    importImageBtn = tk.Button(root,textvariable=import_image, font="Helvetica", bg = "#20bebe", fg="white", height=1, width=10, command=lambda:addImageToBox())
+    import_image.set("Import Image")
+    importImageBtn.grid(column=2, row=2)
+
+
+    canvas = tk.Canvas(root, width=600, height=250)
+    canvas.grid(columnspan=4)
+
+
+
 
     root.mainloop()
+
 

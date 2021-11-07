@@ -13,7 +13,7 @@ import secrets
 #C:\Users\elewi\Downloads\chromedriver_win32
 class QuizletBot():
     def __init__(self, cards, title = 'TITLE'):
-        self.driver = webdriver.Chrome(executable_path = r'./chromedriver')
+        self.driver = webdriver.Chrome(executable_path = './chromedriver')
         self.cards = cards
         self.title = title
         
