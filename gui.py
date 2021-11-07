@@ -35,4 +35,3 @@ def rungui():
 
     root.mainloop()
 
-rungui()

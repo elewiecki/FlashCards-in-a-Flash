@@ -8,7 +8,7 @@ pytesseract.pytesseract.tesseract_cmd = r'C:\\Program Files\\Tesseract-OCR\\tess
 
 def main():
 
-    '''    
+    '''
     # simple if else that get the information of whether the user is copy pasting or using screenshots
     usr_input = input("Please enter if you want to copy paste your paragraph, or provide a screenshot. Respond with ss for screenshot or cp for copypaste ")
     if usr_input == "ss" : 
@@ -18,16 +18,16 @@ def main():
     elif usr_input == "cp":
         usr_input= input("Please paste your definition: ")
         save_to_file(usr_input)
-        
-    '''
     
-    file = open("guiimage.txt", "r")
-    image_path = file.read()
+    '''
+        
+    file = open(r'guiimage.txt', 'r', encoding= 'utf8')
+    image_path = file.read().rstrip().lstrip()
+    print(image_path)
     if image_path == "":
         return;
     convert_image_to_string(image_path)
-        
-
+     
 # uses pytesseract to convert an image into text data with attributes that I dont quite understand
 def convert_image_to_data(image_name):
     image_data = pytesseract.image_to_data(image_name) 
@@ -47,8 +47,8 @@ def convert_image_to_string(image_name):
 #Saves the string to saved_defenitions.txt and appends "\n ---------- \n" at the end of the file to distinguish between entires 
 def save_to_file(string):
     string += "\n" +  "----------" +  "\n" 
-    text_file = open("input.txt", "a") #written with access mode to allow appending
-    print(string.encode("utf8"))
+    print(string)
+    text_file = open("input.txt", "w", encoding = 'utf8') #written with access mode to allow appending
     text_file.write(string)
     text_file.close()
 
