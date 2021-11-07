@@ -1,7 +1,7 @@
 # Flashcards in a Flash
 ##### Created by Josh Shen, Emmet Lewiecki, Ben Chou, Srinanda Yallapragada, Frank Chiu, and Vibhu Mogalapalli
 
-[logo here]
+![logo here](readme_images/logo.png)
 
 If you're anything like us, you tend to procrastinate and have to study lots of material on a time crunch. When it comes to studying terms and definitions in a textbook, the process is pretty straightforward. **Flashcards in a Flash** automates this process by creating a flashcard set in Quizlet based on term and definition pairs that it finds. This is a massive improvement over having to comb through a textbook manually, identifying flashcard pairs, and then creating flashcards on Quizlet one-by-one yourself. Let **Flashcards in a Flash** do the heavy lifting so that you can focus on learning and review!
 
@@ -42,3 +42,5 @@ This project was created for HackUMass 1001
 If you have any questions or comments email us at jlshen@umass.edu
 
 If we end up making a website, it will be hosted at https://flashcardsinaflash.tech/
+
+Any future video content related to this project will be on the [Flashcards in a Flash](https://www.youtube.com/channel/UCkZHDzPeojOGCsy17b2PG2w) channel
