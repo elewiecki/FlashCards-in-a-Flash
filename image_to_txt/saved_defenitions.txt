@@ -8,12 +8,10 @@ ELEMENTARY ROW OPERATIONS
 row.!
 
 2. (Interchange) Interchange two rows.
-3. (Scaling) Multiply all entries in a row by a nonzero constant. 
+3. (Scaling) Multiply all entries in a row by a nonzero constant.
 
  
 
  
 
 ----------
-
-Blah is a eoruigbworing owueng. 

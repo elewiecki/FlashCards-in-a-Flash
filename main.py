@@ -7,7 +7,7 @@ import model as m
 def main():
     #first user copy pastes into input.txt
     m.execute()
-    cards = open('output.txt', 'r').read()
+    cards = open('output.txt', 'r', encoding ='utf8').read()
     bot = qb.QuizletBot(cards)
     bot.login()
     bot.createFlashcards()

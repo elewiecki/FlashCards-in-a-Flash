@@ -1,6 +1,6 @@
 import pytesseract
 from PIL import Image
-import cv2 
+#import cv2 
 from PIL import ImageGrab
 import time
 pytesseract.pytesseract.tesseract_cmd = r'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'

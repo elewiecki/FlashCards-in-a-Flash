@@ -10,9 +10,10 @@ import secrets
 
 
 #/Users/joshuashen/Downloads/chromedriver
+#C:\Users\elewi\Downloads\chromedriver_win32
 class QuizletBot():
     def __init__(self, cards, title = 'TITLE'):
-        self.driver = webdriver.Chrome(executable_path = '/Users/joshuashen/Downloads/chromedriver')
+        self.driver = webdriver.Chrome(executable_path = r'./chromedriver')
         self.cards = cards
         self.title = title
         
@@ -52,6 +53,7 @@ class QuizletBot():
         data_in = self.driver.find_element_by_xpath('//*[@id="SetPageTarget"]/div/div[3]/div[1]/div/form/textarea')
         data_in.send_keys(self.cards)
         
+        sleep(len(self.cards.split("\n")))
         import_btn2 = self.driver.find_element_by_xpath('//*[@id="SetPageTarget"]/div/div[3]/div[1]/div/form/div[1]/button')
         import_btn2.click()
         
