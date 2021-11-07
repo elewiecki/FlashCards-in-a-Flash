@@ -28,7 +28,7 @@ def createCardDictionary():
     words = []
 
     #input is in format thing then 10 dashes
-    input_text = open(r'input.txt', 'r', encoding='utf8').read()
+    input_text = open(r'image_to_txt\saved_defenitions.txt', 'r', encoding='utf8').read()
     
     
     input_text = input_text.replace('\n', ' ')
