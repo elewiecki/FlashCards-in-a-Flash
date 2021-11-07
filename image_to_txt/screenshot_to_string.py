@@ -40,6 +40,7 @@ def convert_image_to_string(image_name):
 def save_to_file(string):
     string += "\n" +  "----------" +  "\n" 
     text_file = open("saved_defenitions.txt", "a") #written with access mode to allow appending
+    print(string.encode("utf8"))
     text_file.write(string)
     text_file.close()
 
