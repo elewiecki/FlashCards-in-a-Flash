@@ -32,4 +32,4 @@ def rungui():
 
     root.mainloop()
 
-rungui()
+#rungui()

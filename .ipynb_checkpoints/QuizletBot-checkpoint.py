@@ -71,7 +71,7 @@ class QuizletBot():
 
         tLang = self.driver.find_element_by_xpath('//*[@id="react-select-2--option-1"]')
         tLang.click()
-        sleep(1)
+        sleep(10)
         dLangDropDown = self.driver.find_element_by_xpath('//*[@id="SetPageTarget"]/div/div[2]/div[2]/div/div[1]/div[6]/div[1]/div[1]/div/div[3]/div[1]/div[2]/div/div/div[2]/div/div/div[2]/span[2]/div[2]/button')
         dLangDropDown.click()
         sleep(1)

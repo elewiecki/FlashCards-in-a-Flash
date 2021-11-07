@@ -8,6 +8,8 @@ pytesseract.pytesseract.tesseract_cmd = r'C:\\Program Files\\Tesseract-OCR\\tess
 
 def main():
 
+    
+    text_file = open("input.txt", "r")
     # simple if else that get the information of whether the user is copy pasting or using screenshots
     usr_input = input("Please enter if you want to copy paste your paragraph, or provide a screenshot. Respond with ss for screenshot or cp for copypaste ")
     if usr_input == "ss" : 
