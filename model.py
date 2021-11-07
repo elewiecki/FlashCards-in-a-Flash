@@ -25,18 +25,25 @@ def execute():
 def createCardDictionary():
    
     fullDictionary = []
+    words = []
 
     #input is in format thing then 10 dashes
-    input_text = open(r'input.txt', 'r').read()
-    print(input_text)
-    input_sentences = re.split("(?<=[^A-Z])\.[^a-zA-Z]" , input_text) #problem: acronyms. Solution: nltk library, would have to load into repo or something
+    input_text = open(r'input.txt', 'r', encoding='utf8').read()
+    
+    
+    input_text = input_text.replace('\n', ' ')
+    
+    input_sentences = re.split("(?<=[^A-Z])\.|\?[^a-zA-Z]" , input_text) #problem: acronyms. Solution: nltk library, would have to load into repo or something
+    
+    
     for j in range(len(input_sentences)):
         input_sentences[j] = "\. " + input_sentences[j]
     
     #creates flashcard and adds to dictionary
     def  appendCardToDictionary(foundDefinitions, foundWords):
+        
         for i in range(min(len(foundDefinitions), len(foundWords))):
-            if len(foundDefinitions[i]) == 0:
+            if len(foundDefinitions[i]) <= 2:
                 continue
 
 
@@ -46,12 +53,16 @@ def createCardDictionary():
             }
 
              #makes dictionary/flashcard
-            flashcard['word'] = foundWords[i]
-            flashcard['definition'] = foundDefinitions[i]
-            #appends pair to dictionary
-            fullDictionary.append(flashcard)
-
-            print(flashcard)  
+            
+            newWord = foundWords[i].lstrip()
+            newDefinition = foundDefinitions[i].lstrip()
+            if newWord not in words:
+                flashcard['word'] = newWord
+                flashcard['definition'] = newDefinition
+                #appends pair to dictionary
+                fullDictionary.append(flashcard)
+                words.append(newWord)       
+                print(flashcard)  
             
             
     #Works in format "[start indicator] [word] [indicator phrase] [definition] [end indicator]"
@@ -86,7 +97,7 @@ def createCardDictionary():
             definition = re.compile('(?<=' + indicator + ').*(?=' + endBound + ')')
 
             #finds all instances of format
-            foundWords = re.findall(indicator, input_sentences[j])
+            foundWords = re.findall(indicator, input_sentences[j], re.IGNORECASE)
             foundDefinitions = definition.findall(input_sentences[j], re.IGNORECASE)
 
             #loops through all word/definition pairs, appends to dictionary
@@ -99,7 +110,7 @@ def createCardDictionary():
         pass
     
 
-    findBoundedIndicator(". ", " is a ", ".*") #looks for "is a"
+    findBoundedIndicator(". ", "(?<!What)(?<!Why)(?<!How)(?<!When)(?<!Where)(?<!Who)(?<!It)(?<!it)(?<!that)(?<!this)(?<!He)(?<!Her) is a ", ".*") #looks for "is a"
     findBoundedIndicator(". ", " has been ", ".*") #Looks for "has been"
     findBoundedIndicator(". ", " was a ", ".*") #Looks for "was a"
     findBoundedIndicator(". ", ": ", ".*") #looks for :
@@ -110,14 +121,14 @@ def createCardDictionary():
 
 
      
-    
+    print(len(fullDictionary))
     return fullDictionary
 
 
 
 def writeOutput(cardDict):
     
-    output_text = open("output.txt","w")
+    output_text = open("output.txt","w", encoding='utf8')
     for i in range(len(cardDict)):
         output_text.write(cardDict[i]["word"] + "@@@" + cardDict[i]["definition"] + "\n")
 
