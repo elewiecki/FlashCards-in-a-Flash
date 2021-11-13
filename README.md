@@ -33,7 +33,7 @@ This process should take about 30 seconds, depending on the size of your input. 
 ## Future Plans
 - Improve our Natural Language Processing model to create more accurate flashcard pairs
 - Create a website with an improved user interface
-- Create an actual Quizlet API or find another workaround to programmatically interact Quizlet without using web driver
+- Create an actual Quizlet API or find another method to programmatically interact Quizlet without using web driver
 
 
 ## Notes
